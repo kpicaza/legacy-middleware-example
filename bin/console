@@ -1,0 +1,33 @@
+#!/usr/bin/env php
+<?php
+
+use InFw\Console\Console;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+
+set_time_limit(0);
+require __DIR__ . '/../vendor/autoload.php';
+
+call_user_func(function () {
+
+    $container = require __DIR__ . '/../config/container.php';
+    $config = $container->get('config');
+
+    $input = new ArgvInput();
+
+    /** @var Console $console */
+    $console = $container->get(Console::class);
+
+    $console->addCommands(array_map(function (string $command) use ($container) {
+        return $container->get($command);
+    }, array_merge(
+        array_keys($config['console']['invokables']),
+        array_keys($config['console']['factories'])
+    )));
+
+    array_walk($config['console']['helper-sets'], function ($helperSet) use ($console, $container) {
+        $console->setHelperSet($container->get($helperSet));
+    });
+
+    $console->run($input);
+});

@@ -1,0 +1,11 @@
+extensions:
+  Memio\SpecGen\MemioSpecGenExtension: ~
+  RMiller\ExemplifyExtension\ExemplifyExtension: ~
+
+suites:
+    default: ~
+
+#    email:
+#        namespace: 'InFw\Email'
+#        src_path: packages/email/src
+#        spec_path: packages/email

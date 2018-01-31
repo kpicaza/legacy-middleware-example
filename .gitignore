@@ -1,0 +1,20 @@
+build
+composer.lock
+composer.phar
+vendor
+clover.xml
+coveralls-upload.json
+
+.env
+.env.test
+.env.dev
+
+# IDE specific
+.idea
+
+# DEV especific
+src/framework
+src/tactician
+src/console
+src/event-sourcing
+src/infw-generator

@@ -1,0 +1,4 @@
+<h1>Hola mundo</h1>
+<?php foreach ($this->items as $item): ?>
+<a href="<?php echo $this->url(array("action" => "get", "controller" => "storage", "item" => $item)) ?>"><?php echo $item ?></a><br/>
+<?php endforeach; ?>
